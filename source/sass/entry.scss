@@ -1,0 +1,22 @@
+/* Нормализуем отображение элементов по умолчанию в разных браузерах */
+@import url(normalize.css);
+
+@import "colors";  // Подключаем переменные с цветами
+@import "button";  // Общий стиль кнопок
+@import "textbox"; // Общий стиль полей для ввода
+@import "table";   // Обычное представление таблиц
+@import "common";  // Общие стили
+
+@import "popup";   // Подключаем стиль popup-окна
+
+@import "author";
+
+/* Подключаем стили к страницам */
+@import "wrapper";
+@import "welcome-page";
+@import "room-selection-page";
+@import "room-page";
+@import "game-page";
+
+/* Медиа-запросы */
+@import "media";

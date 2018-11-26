@@ -1,0 +1,14 @@
+.credits {
+    display: block;
+    visibility: visible;
+    position: fixed !important;
+    right: 5px;
+    bottom: 5px;
+
+    z-index: 99999999;
+
+    &::before {
+        content: 'Ложкин Дмитрий, 2018';
+        opacity: .7;
+    }
+}

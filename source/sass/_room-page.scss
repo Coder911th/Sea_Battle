@@ -1,0 +1,199 @@
+/**** Страница: игровая комната ****/
+
+.room-page {
+    display: none; // Нормальное значение flex (изначально страница скрыта)
+
+    padding: 20px 10px;
+
+    /* Привелегии создателя комнаты */
+    &.admin {
+        table {
+            /* Кнопочка выгоняющая игрока из комнаты */
+            .kick {
+                display: inline-block;
+                width: 1em;
+                height: 1em;
+
+                margin-left: 5px;
+
+                background: url(../images/remove.png) left top/100%;
+                vertical-align: middle;
+
+                &:hover {
+                    transform: scale(1.3);
+                }
+            }
+
+            .you > .kick {
+                display: none;
+            }
+        }
+
+        /* Показываем кнопки добавить и удалить для счётчика AI */
+        .arrow.left {
+            display: inline-block;
+        }
+
+        .arrow.right {
+            display: inline-block;
+        }
+    }
+
+    /* Левая колонка */ 
+    .left-column {
+        flex-grow: 1;
+        
+        margin: 0 40px 0 20px;
+
+        /* Таблица с игроками */
+        table {
+            @extend %simple-table;
+
+            /* Подцветка своего имени в списке игроков */
+            td.you {
+                font-weight: bold;
+            }
+
+            // Не реагируем на нажатия по строкам таблицы
+            tr:active td {
+                background: #e8edff;
+            }
+        }
+    }
+
+    /* Правая колонка */
+    .right-column {
+        flex: 0 1 300px;
+
+        /* Ряд из двух кнопок */
+        .row {
+            display: flex;
+            justify-content: space-between;
+
+            button {
+                width: 145px;
+                padding: 5px 10px;
+                border-radius: 10px;
+            }
+        }
+
+        /* Информация о запуске игры */
+        .help {
+            padding: 20px 10px;
+            margin: 20px 0;
+
+            border: 1px solid #aaa;
+            border-radius: 10px;
+            background: #fafafa;
+
+            text-align: center;
+        }
+
+        /* Блок информации о комнате */
+        .room-info {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+
+            margin: 30px 0;
+
+            font-size: 1.4em;
+
+            div {
+                width: 60%;
+                text-align: center;
+                user-select: none;
+
+                /* Заголовок */
+                &:first-of-type {
+                    padding-bottom: 5px;
+                    border-bottom: 1px solid #ddd;
+                    color: $dark;
+                    font-weight: 400;
+                }
+                
+                /* Значение */
+                &:last-of-type {
+                    padding-top: 10px;
+                    font-weight: 300;
+                    word-break: break-all;
+                }
+            }
+        }
+
+        /* Стрелки */
+        .arrow {
+            display: none;
+            width: 1em;
+            height: 1em;
+
+            &.left {
+                margin-right: 5px;
+                background: url(../images/back.svg) no-repeat top left / 100% 100%;
+            }
+
+            &.right {
+                margin-left: 5px;
+                background: url(../images/next.svg) no-repeat  top left / 100% 100%;
+            }
+
+            &:hover {
+                transform: scale(1.3);
+            }
+        }
+
+        /* Чат игроков комнаты */
+        .chat {
+            border: 2px solid $dark;
+            border-radius: 5px;
+
+            /* Заголовок "Chat" */
+            h1 {
+                text-align: center;
+            }
+
+            /* Прокручиваемый блок с сообщениями */
+            .messages {
+                height: 150px;
+                padding: 5px;
+                border-top: 2px solid $dark;
+                overflow-y: auto;
+                white-space: pre-wrap;
+                word-break: break-all;
+
+                /* Подцветка ников */
+                .nick {
+                    font-weight: bold;
+                }
+
+                .special {
+                    font-variant: small-caps;
+                    font-weight: 300;
+                }
+            }
+
+            /* Средства ввода и отправки чата */
+            .inputs {
+                display: flex;
+
+                button {
+                    padding: 5px 10px;
+                    border: none;
+                    border-top: 2px solid $dark;
+                    border-left: 2px solid $dark;
+                    border-radius: 0 0 5px 0;
+                    box-shadow: none;
+                }
+
+                input {
+                    width: 100px;
+                    border-radius: 0 0 0 5px;
+                    border: none;
+                    border-top: 2px solid $dark;
+                    flex-grow: 1;
+                }
+            }
+            
+        }
+    }
+}

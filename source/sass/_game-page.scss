@@ -1,0 +1,409 @@
+/**** Страница с самой игрой ****/
+
+.game-page {
+
+    display: none; // Видимое состояние - flex
+    flex-flow: column;
+
+    padding: 20px;
+
+    /* Режим хода */
+    &.i-move {
+        .enemy.field td:hover {
+            box-shadow: inset 0 0 0 100px rgba(0, 0, 0, .4);
+            cursor: pointer;
+        }
+    }
+
+    /* Режим подготовки к сражению */
+    &.prepare {
+        .enemy {
+            position: relative;
+
+            /* Скрываем поле противника */
+            table {
+                opacity: 0;
+            }
+
+            /* Выводим информационное сообщение вместо поля противника */
+            .info {
+                display: flex;
+            }
+        }
+
+        .my.field {
+
+            td:hover {
+                box-shadow: inset 0 0 0 100px rgba(0, 0, 0, .4);
+                cursor: pointer;
+            }
+        }
+
+        /* Кнопка "ГОТОВ" */
+        #ready {
+            display: block !important;
+        }
+
+        /* Сообщение о валидации кораблей */
+        .validation-message {
+            display: block;
+        }
+
+        /* Скрываем историю ходов */
+        .history {
+            display: none;
+        }
+
+        .enemy-list li {
+
+            &::after {
+                content: " (Ожидаем)";
+                font-weight: bold;
+            }
+
+            /* Готовые к сражению противники */
+            &.ready::after {
+                content: " (Готов)";
+                font-weight: bold;
+            }
+
+        }
+
+        /* Ожидание других игроков */
+        &.ready {
+            td:hover {
+                box-shadow: none !important;
+                cursor: default !important;
+            }
+        }
+    }
+
+    /* Строка статуса игры */
+    .status {
+        padding-left: 50px;
+        margin: 20px 0;
+    }
+
+    /* Кнопочка "Сдаться" */
+    #give-up {
+        transition: .3s;
+        padding: 7px 40px;
+        align-self: flex-end;
+        margin: 10px 20px -50px 0;
+        border-radius: 10px;
+        z-index: 100;
+    }
+
+    /* Ряд из двух игровых полей и списка противников */
+    .row {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    /* Игровое поле */
+    .field {
+
+        margin-top: 10px;
+        
+        table {
+            border-collapse: collapse;
+        }
+
+        /* Первая строка таблицы */
+        tr:first-of-type td {
+            border: none;
+            vertical-align: bottom;
+
+            &:hover {
+                box-shadow: none !important;
+                cursor: default !important;
+            }
+        }
+
+        /* Перваый столбец таблицы */
+        td:first-of-type {
+            padding-right: 5px;
+            border: none;
+            text-align: right;
+
+            &:hover {
+                box-shadow: none !important;
+                cursor: default !important;
+            }
+        }
+
+        td {
+            $cell-size: 25px;
+
+            min-width: $cell-size;
+            height: $cell-size;
+            box-sizing: border-box;
+            
+            padding: 0;
+
+            border: 1px solid #000;
+
+            color: $dark;
+            text-align: center;
+            vertical-align: middle;
+
+            /* Ячейка-кораблик */
+            &.ship {
+                background: rgba(0, 0, 0, .6);
+            }
+        }
+
+        &.enemy {
+            margin-left: 30px;
+            margin-right: 30px;
+
+            /* Запрет атаки */
+            &.block td:hover {
+                box-shadow: none !important;
+                cursor: default !important;
+            }
+
+            // Ячейки поля противника
+            td {
+
+                // В этой точке у противника корабль
+                &.ship {
+
+                    background: url(../images/cross.svg) left top / 100% 100% no-repeat rgba(0, 0, 0, .6);
+
+                    /*
+                        Тут кораблик, который вы не успели подстрелить
+                        Противник победил или сдался
+                    */
+                    &.saved {
+                        background: rgba(0, 0, 0, .6);
+                    }
+
+                    &:hover {
+                        box-shadow: none;
+                        cursor: default !important;
+                    }
+                }
+
+                // Вы промахнулись по этой ячейке
+                &.miss {
+                    background: url(../images/miss.svg) left top / 100% 100% no-repeat;
+                    
+                    &:hover {
+                        box-shadow: none;
+                        cursor: default !important;
+                    }
+                }
+
+            }
+        }
+
+        /* Стили атакованных ячеек моего поля */
+        &.my.field td.attacked {
+            background: url(../images/miss.svg) left top / 100% 100% no-repeat;
+
+            /* Если атаковали корабль */
+            &.ship {
+                background: url(../images/cross.svg) left top / 100% 100% no-repeat rgba(0, 0, 0, .6);
+            }
+        }
+
+    }
+
+    /* Информационное сообщение вместо поля противника для стадии подготовки */
+    .info {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        
+        display: none; // В видимом состоянии flex
+        flex-flow: column;
+        justify-content: center;
+
+        padding: 10px;
+        margin: -10px 0 30px;
+
+        border: 1px solid #ccc;
+        border-radius: 5px;
+
+        ul {
+            padding: 20px 0 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        li {
+            padding: 0 0 2px 7px;
+            line-height: 1.5;
+
+            &.header {
+                padding-left: 0;
+                font-weight: bold;
+            }
+        }
+    }
+
+    /* Список противников */
+    .enemy-list {
+        flex: 0 1 200px;
+
+        min-width: 200px;
+
+        border: 1px solid $dark;
+        border-radius: 6px;
+        background: rgb(235, 242, 255);
+
+        h2 {
+            padding: 12px 0;
+            border-bottom: 3px solid $dark;
+            text-align: center;
+        }
+
+        /* Кнопка "ГОТОВ" */
+        #ready {
+            display: none;
+            width: 100%;
+
+            border: none;
+            border-top: 1px solid $dark;
+
+            border-radius: 0 0 4px 4px;
+            box-shadow: none;
+
+            &.active {
+                background: $dark;
+                color: white;
+                text-shadow: 0 0 10px white;
+            }
+        }
+
+        ul {
+            height: 250px;
+            
+            padding: 0;
+            margin: 0;
+            list-style: none;
+
+            overflow: auto;
+        }
+
+        /* Элементы списка игроков */
+        li {
+            position: relative;
+
+            padding: 5px 30px;
+            border-bottom: 1px solid #bbb;
+            text-align: center;
+
+            cursor: pointer;
+            word-wrap: break-word;
+
+            &:hover {
+                background: rgb(87, 165, 230);
+                color: white;
+
+                &.move::after {
+                    color: white;
+                }
+
+            }
+
+            /* Игрок, который сейчас делает свой ход */
+            &.move::after {
+                content: "*";
+                color: red !important;
+            }
+
+            /* Просматриваемый в данный момент игрок */
+            &.look {
+
+                background: rgb(255, 217, 48);
+                color: black;
+                font-weight: bold;
+                cursor: default;
+
+                &::before {
+                    content: "";
+                    
+                    position: absolute;
+                    left: 10px;
+                    top: 0;
+                    bottom: 0;
+
+                    display: inline-block;
+                    width: 15px;
+
+                    background: url(../images/back.svg) left top / 100% 100% no-repeat;
+                }
+            }
+
+            /* Сдавшийся или проигравший игрок */
+            &.give-up {
+                text-decoration: line-through;
+            }
+        }
+    }
+
+    /* История ходов */
+    .history {
+        margin-top: 10px;
+        border: 1px solid #999;
+        border-radius: 5px;
+
+        h2 {
+            padding: 10px 0;
+            border-bottom: 1px solid #999;
+            font-weight: normal;
+            text-align: center;
+        }
+
+        .text {
+            height: 150px;
+            padding: 10px;
+            margin: 0px 1px px;
+            font-weight: bold;
+            overflow-y: auto;
+
+            span {
+                font-variant: small-caps;
+                color: rgb(63, 1, 1);
+            }
+
+            .attacks {
+                display: inline-block;
+                padding: 0 3px;
+                width: 16px;
+                height: 1em;
+                background: url(../images/attack.png) no-repeat 0 1px / contain content-box;
+            }
+        }
+    }
+
+    /* Блок с сообщением валидации расстановки кораблей */
+    .validation-message {
+        transition: .5s;
+
+        display: none;
+        margin-top: 15px;
+        padding: 15px;
+
+        border: 1px solid $dark;
+        border-radius: 5px;
+        //background: linear-gradient(to top, rgb(119, 1, 1), rgb(255, 0, 128)) rgb(255, 0, 128);
+
+        color: $dark;
+        line-height: 1.5;
+        letter-spacing: 1px;
+        text-align: center;
+
+        /* Успешная валидация */
+        &.success {
+            border-color: rgb(0, 102, 5);
+            background: rgba(30, 139, 39, 0.534);
+            color: rgb(0, 102, 5);
+        }
+    }
+
+}

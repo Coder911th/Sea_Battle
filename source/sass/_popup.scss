@@ -1,0 +1,102 @@
+/**** Popup-окно ****/
+
+.popup {
+    display: none; // Нормальное значение flex (изначально невидимый)
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background: rgba(0, 0, 0, .5);
+
+    z-index: 1000;
+
+    /* Режим вывода сообщения */
+    &.alert .message {
+        display: block !important;
+    }
+
+    /* Режим ввода текста */
+    &.prompt .prompt-container {
+        display: block !important;
+    }
+
+    /* Само окно с сообщением */
+    .window {
+        position: relative;
+
+        width: 600px;
+
+        border-radius: 5px;
+        background: white;
+
+        & > div {
+            padding: 30px 23px;
+            text-align: center;
+
+            /* Режим ввода данных */
+            .prompt-container {
+                display: none;
+
+                label {
+                    margin-right: 10px;
+                }
+
+                input {
+                    width: 200px;
+                    margin: 15px 0;
+                }
+
+                button {
+                    padding: 5px 15px;
+                    margin-left: 10px;
+                }
+            }
+
+            /* Режим вывода сообщения */
+            .message {
+                display: none;
+                padding: 20px;
+            }
+        }
+
+        /* Закрывающий popup крестик */
+        .cancel {
+            width: 25px;
+            height: 25px;
+
+            position: absolute;
+            top: 10px;
+            right: 10px;
+
+            cursor: pointer;
+
+            circle {
+                cx: 12.5px;
+                cy: 12.5px;
+                r: 11.75px;
+
+                fill: transparent;
+                stroke: black;
+                stroke-width: 1px;;
+            }
+
+            line {
+                fill: transparent;
+                stroke: black;
+                stroke-width: 1px;
+                stroke-linecap: round;
+            }
+
+            &:hover line {
+                stroke-width: 2px;
+            }
+
+        }
+    }
+
+}

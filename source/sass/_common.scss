@@ -1,0 +1,56 @@
+/**** Общие стили ****/
+
+/* Шрифт для заголовкой */
+@font-face {
+    font-family: 'Marck Script';
+    src: local('Marck Script'), 
+        local('MarckScript-Regular'), 
+        url(../fonts/Marck-Script/marckscript.woff2) format('woff2'), 
+        url(../fonts/Marck-Script/marckscript.woff) format('woff'), 
+        url(../fonts/Marck-Script/marckscript.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Шрифт для контента */
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto Light'), 
+        local('Roboto-Light'), 
+        url(../fonts/Roboto-300/Robotolight.woff2) format('woff2'), 
+        url(../fonts/Roboto-300/Robotolight.woff) format('woff'), 
+        url(../fonts/Roboto-300/Robotolight.ttf) format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'), 
+        local('Roboto-Regular'), 
+        url(../fonts/Roboto-400/Roboto.woff2) format('woff2'), 
+        url(../fonts/Roboto-400/Roboto.woff) format('woff'),
+        url(../fonts/Roboto-400/Roboto.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Сброс стилей */
+* {
+    outline: none;
+}
+
+/* Обычный текст */
+html,
+button,
+input {
+    color: $normal;
+    font-family: "Roboto";
+}
+
+/* Заголовки */
+h1, h2 {
+    margin: 0;
+    color: $dark;
+    font-family: "Marck Script";
+}

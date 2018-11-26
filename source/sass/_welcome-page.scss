@@ -1,0 +1,27 @@
+/**** Страница привествия пользователя ****/
+
+.welcome-page {
+
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+
+    height: 100%;
+
+    text-align: center; // Выравниваем кнопку
+
+    /* Заголовок */
+    h1 {
+        padding-top: 70px;
+        font-size: 5em;
+        text-align: center;
+    }
+
+    /* Кнопка "Подобрать комнату" */
+    button {
+        padding: 20px 40px;
+        align-self: center;
+        font-size: 1.2em;
+    }
+
+}

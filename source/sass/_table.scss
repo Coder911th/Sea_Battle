@@ -1,0 +1,39 @@
+/**** Шаблон обычного представления таблицы ****/
+
+%simple-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    td, th {
+        padding: 15px 5px;
+        text-align: center;
+    }
+
+    th {
+        border-bottom: 2px solid #6678b1;
+        color: #039;
+    }
+
+    td {
+        transition: .3s;
+        cursor: pointer;
+    }
+
+    tr {
+        border-bottom: 1px solid #ccc;
+
+        &:hover td {
+            background: #e8edff;
+            color: $dark;
+        }
+
+        &:active td {
+            background: #d8e0fd;
+            color: $dark;
+        }
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+    }
+}

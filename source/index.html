@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Морской бой</title>
+    <link rel="stylesheet" href="css/entry.css">
+</head>
+<body>
+    
+    <section class="welcome-page">
+        <h1>Морской бой</h1>
+        <button id="start-selecting-room-button" type="button">Подобрать игровую комнату</button>
+    </section>
+
+    <section class="room-selection-page">
+        <header>
+            <h2>Выберите игровую комнату</h2>
+            <div>
+                <button id="create-room">Создать комнату</button>
+                <input id="nickname" placeholder="Введите ваше имя" maxlength="12" type="text">
+            </div>
+        </header>
+        <table>
+            <thead>
+                <th>Название</th>
+                <th title="Искусственный интеллект">AI</th>
+                <th title="Реальные игроки">Игроков</th>
+            </thead>
+            <tbody>
+                <tr class="no-rooms-message">
+                    <td colspan="3">В данный момент не создано ни одной комнаты!</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="room-page">
+        <div class="left-column">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Игроки</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="right-column">
+            <div class="row">
+                <button id="start-game" disabled>Начать игру</button>
+                <button id="exit-from-room">Выйти</button>
+            </div>
+
+            <div class="help">
+                Игра начнётся только тогда, когда администратор комнаты её запустит
+            </div>
+
+            <div class="room-info">
+                <div>Комната</div>
+                <div id="room-name">SuperField</div>
+            </div>
+
+            <div class="room-info">
+                <div>Администратор</div>
+                <div id="admin-name">Flex</div>
+            </div>
+
+            <div class="room-info">
+                <div title="Количество ботов">AI</div>
+                <div>
+                    <span class="arrow left"></span>
+                    <span id="ai-counter">0</span>
+                    <span class="arrow right"></span>
+                </div>
+            </div>
+
+            <div class="chat">
+                <h1>Chat</h1>
+                <div class="messages"></div>
+                <div class="inputs">
+                    <input id="chat-input" type="text">
+                    <button id="send-message">Отправить</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="game-page prepare">
+        <button id="give-up">Сдаюсь</button>
+        <h1 class="status">Подготовка к сражению</h1>
+
+        <div class="row">
+            <div class="my field">
+                <table>
+                    <tr>
+                        <td></td>
+                        <td>A</td>
+                        <td>Б</td>
+                        <td>В</td>
+                        <td>Г</td>
+                        <td>Д</td>
+                        <td>Е</td>
+                        <td>Ж</td>
+                        <td>З</td>
+                        <td>И</td>
+                        <td>К</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="enemy field">
+                <table>
+                    <tr>
+                        <td></td>
+                        <td>A</td>
+                        <td>Б</td>
+                        <td>В</td>
+                        <td>Г</td>
+                        <td>Д</td>
+                        <td>Е</td>
+                        <td>Ж</td>
+                        <td>З</td>
+                        <td>И</td>
+                        <td>К</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="info">
+                    <div>Нажмите на соответствующую ячейку, чтобы разместить в ней палубу коробля.</div>
+                    <ul>
+                        <li class="header">Вам доступно:</li>
+                        <li>Четырёхпалубных: <b><span id="four">0</span>/1</b></li>
+                        <li>Трёхпалубных: <b><span id="three">0</span>/2</b></li>
+                        <li>Двухпалубных: <b><span id="two">0</span>/3</b></li>
+                        <li>Однопалубных: <b><span id="one">0</span>/4</b></li>
+                        <li>Другие корабли: <b>нет</b></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="enemy-list">
+                <h2>Противники</h2>
+                <ul>
+                    <li class="ready">SUPER_MAN_97</li>
+                    <li class="look">WWWWWWWWWWWW</li>
+                    <li class="ready">Jack</li>
+                    <li>Sean</li>
+                    <li>Ann</li>
+                </ul>
+                <button id="ready">ГОТОВ</button>
+            </div>
+        </div>
+
+        <div class="validation-message">
+            Расставьте все свои корабли!
+        </div>
+
+        <div class="history">
+            <h2>История ходов</h2>
+            <div class="text">
+                Mage <span class="attacks"></span> Bob — A7 ( Попал )<br>
+                Ann <span class="attacks"></span> Bob — Д10 ( Мимо )<br>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="popup">
+
+        <div class="window">
+            <div>
+                <svg class="cancel">
+                    <circle></circle>
+                    <line x1="6.25" y1="6.25" x2="18.75" y2="18.75"></line>
+                    <line x1="18.75" y1="6.25" x2="6.25" y2="18.75"></line>
+                </svg>
+                <div class="prompt-container">
+                    <label>Название комнаты</label>
+                    <input id="popup-textbox" type="text" maxlength="12">
+                    <button id="popup-button">Создать</button>
+                </div>
+                <div class="message"></div>
+            </div>
+
+        </div>
+        
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/namespace.js"></script>
+    <script src="js/webSocketMessageHander.js"></script>
+    <script src="js/handlers.js"></script>
+    <script src="js/game.js"></script>
+
+    <script>
+        /*$('#start-selecting-room-button').click();
+        $('#nickname').val('Flex');
+        $('#create-room').click();
+        $('#popup-textbox').val('Box');
+        $('#popup-button').click(() => {
+            $('.arrow.right').click().click();
+            $('#start-game').click();
+            setTimeout("fill()", 500);
+        });*/
+    </script>
+</body>
+</html>

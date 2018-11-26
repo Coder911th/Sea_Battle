@@ -1,0 +1,202 @@
+@media (max-width: 870px) {
+    .game-page {
+
+        .status {
+            margin-bottom: 0;
+        }
+
+        .enemy-list {
+            align-self: flex-end;
+        }
+
+        #give-up {
+            margin-right: 0px;
+        }
+
+        .validation-message:not(#hight-priority) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70px;
+            order: -1;
+        }
+
+        .row {
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .field td {
+            min-width: 35px;
+            height: 35px;
+        }
+
+        .enemy.field {
+            order: 1;
+            flex-basis: 200px;
+            margin-top: 30px;
+            padding: 20px;
+
+            td {
+                height: 0;
+                width: 0;
+            }
+        }
+
+        .info {
+            margin: 0;
+        }
+
+        &:not(.prepare) {
+            .enemy.field td {
+                min-width: 35px;
+                height: 35px;
+            }
+        }
+
+    }
+}
+
+@media (max-width: 670px) {
+    .game-page {
+
+        .enemy-list {
+            margin-top: 10px;
+        }
+
+        .field td {
+            min-width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+@media (max-width: 620px) {
+    .room-selection-page {
+        header {
+            flex-direction: column;
+
+            h2 {
+                margin: 20px 0 0;
+                order: 1;
+            }
+            
+        }
+    }
+
+    .room-page {
+        flex-direction: column;
+
+        .left-column {
+            margin: 0 0 10px;
+        }
+    }
+
+    .game-page {
+
+        table {
+            width: 93%;
+            table-layout: fixed;
+        }
+
+        .row {
+            flex-direction: column;
+        }
+
+        .status {
+            padding-left: 0;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        #give-up {
+            order: 100;
+            align-self: auto;
+            margin: 10px;
+        }
+
+        .enemy-list {
+            width: 100%;
+        }
+
+        .my.field {
+            margin: -15px 0 20px -6px;
+            td {
+                min-width: 50px;
+                height: 50px;
+            }
+        }
+
+        .enemy.field {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        &:not(.prepare) {
+            .enemy.field {
+                padding: 20px 0;
+                margin: 0;
+                td {
+                    min-width: 50px;
+                    height: 50px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .room-selection-page {
+        header h2 {
+            font-size: 2em;
+        }
+    }
+
+    .game-page {
+        .my.field td {
+            height: 40px;
+        }
+
+        &:not(.prepare) {
+            .enemy.field td {
+                height: 40px;
+            }
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .game-page {
+        .my.field td {
+            max-height: 30px;
+            height: 30px;
+            max-width: 30px;
+        }
+
+        &:not(.prepare) {
+            .enemy.field td {
+                height: 30px;
+            }
+        }
+
+        .validation-message:not(#high-priority) {
+            height: 150px;
+        }
+    }
+}
+
+@media (max-width: 320px) {
+    .game-page {
+        .my.field td {
+            max-height: 25px;
+            height: 25px;
+            max-width: 25px;
+        }
+
+        &:not(.prepare) {
+            .enemy.field td {
+                height: 25px;
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+/**** Страница с выбором игровой комнаты ****/
+
+.room-selection-page {
+    display: none;
+    padding: 20px;
+
+    /* Заоловок */
+    header {
+        display: flex;
+        margin: 10px 0 10px;
+
+        /* Контейнер для кнопки и поля ввода */
+        div {
+            display: flex;
+            flex-direction: column;
+
+            /* Кнопка "Создать комнату" */
+            button {
+                margin-bottom: 10px;
+                float: right;
+                border-radius: 5px;
+            }
+        }
+
+        /* "Выберите игровую комнату" */
+        h2 {
+            padding: 0 10px;
+            align-self: center;
+            flex-grow: 1;
+            font-size: 2.5em;
+            text-align: center;
+        }
+    }
+
+    /* Таблица комнат */
+    table {
+        @extend %simple-table; // Наследуем стили обычного преставления таблиц
+
+        /*
+            Сообщение, которое будет показано, если на
+            данный момент нет ни одной доступной комнаты 
+        */
+        tr.no-rooms-message {
+            display: none;
+        }
+    }
+}
